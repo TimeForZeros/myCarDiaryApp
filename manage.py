@@ -6,7 +6,7 @@ import sys
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myCarDiaryApp.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'car_diary.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
