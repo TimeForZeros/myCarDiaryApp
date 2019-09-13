@@ -13,8 +13,9 @@ class Car(models.Model):
     model = models.CharField(max_length=100)
     year = models.IntegerField()
     color = models.CharField(max_length=100)
-    Engine = models.CharField(max_length=100)
     transmission = models.CharField(max_length=100)
+    seats = models.IntegerField()
+    Engine = models.CharField(max_length=100)
     odometer = models.IntegerField()
     state_reg = models.TextField(max_length=2)
     title = models.TextField(max_length=100)
@@ -54,3 +55,10 @@ class Maintenance(models.Model):
     location = models.CharField(max_length=50)
     notes = models.CharField(max_length=250)
     price = models.IntegerField()
+
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    car = models.ForeignKey(Moto, on_delete)
+
+        def __str__(self):
+        return f'Photo for car_id: {self.car_id} @{self.url}'
