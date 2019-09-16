@@ -15,7 +15,7 @@ class Car(models.Model):
     color = models.CharField(max_length=100)
     transmission = models.CharField(max_length=100)
     seats = models.IntegerField()
-    Engine = models.CharField(max_length=100)
+    engine = models.CharField(max_length=100)
     odometer = models.IntegerField()
     state_reg = models.TextField(max_length=2)
     title = models.TextField(max_length=100)
@@ -23,7 +23,7 @@ class Car(models.Model):
     # user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.make
 
     def get_absolute_url(self):
         return reverse('features_detail', kwargs={'car_id': self.id})
@@ -62,3 +62,5 @@ class Maintenance(models.Model):
 
 #     def __str__(self):
 #         return f'Photo for car_id: {self.car_id} @{self.url}'
+
+
