@@ -1,0 +1,12 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+  }
+  
+  header{
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: rgba(78, 149, 65, 0.87);
+    height: 70px;
+  }
