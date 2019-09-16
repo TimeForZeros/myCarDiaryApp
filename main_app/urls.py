@@ -1,8 +1,8 @@
-# from django.urls import path 
-# from . import views
+from django.urls import path
+from . import views
 
-# urlpatterms = [
-#     path('', views.home, name='home'),
+urlpatterns = [
+    path('', views.home, name='home'),
 #     path('about/', views.about, name='about'),
 #     path('cars/', views.cars_index, name='index'),
 #     path('cars/<int:car_id>/', views.cars_detail, name='detail'),
@@ -17,4 +17,4 @@
 #     path('features/create/', views.FeatureCreate.as_view(), name='features_create'),
 #     path('features/<int:pk>/update/', views FeatureUpdate.as_view(), name='features_update'),
 #     path('features/<int:pk>/delete/', views.FeatureDelete.as_view(), name='features_delete'),
-# ]
+]
