@@ -43,7 +43,7 @@ class Maintenance(models.Model):
     location = models.CharField(max_length=50)
     notes = models.CharField(max_length=250)
     price = models.IntegerField()
-    to_do = models.CharField(max_length=50)
+   
 
     def __str__(self):
         return self.make
