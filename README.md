@@ -1,7 +1,7 @@
 
 ##Car Diary Application
 
-<h1>This application allows a user to login and document information about their cars. Once logined a user will be able to see their cars maintenance records and interesting features they have. This is a full CRUD application so users will be able to create additional cars, update their maintenance records, and even delete cars after selling them. <h1>
+<h3>This application allows a user to login and document information about their cars. Once logined a user will be able to see their cars maintenance records and interesting features they have. This is a full CRUD application so users will be able to create additional cars, update their maintenance records, and even delete cars after selling them. <h3>
 
 ## Getting Started 
 
