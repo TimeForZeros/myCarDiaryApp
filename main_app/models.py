@@ -17,7 +17,7 @@ class Car(models.Model):
     odometer = models.IntegerField()
     state_reg = models.TextField(max_length=2)
     title = models.TextField(max_length=100)
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.make
@@ -27,7 +27,7 @@ class Car(models.Model):
 
 class Features(models.Model):
     feature = models.CharField(max_length=50)
-    wishlist = models.CharField(max_length=50)
+    wishlist = models.BooleanField(default=True)
 
     def __str__(self):
         return self.make
