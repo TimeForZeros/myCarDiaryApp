@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 style="font-size: 3em;">ADD CAR FORM</h1>
+
+
+<form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            <tbody>
+                {{ form.as_table }}
+            </tbody>
+        </table>
+        <input type="submit" value="Submit!">
+</form>
+
+
+
+{% endblock %}
