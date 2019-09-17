@@ -2,5 +2,6 @@ td{
     font-size: 2em;
 }
 textarea{
-    
+    height: 20px;
+    width: 50px;
 }
