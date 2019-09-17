@@ -48,9 +48,9 @@ class Maintenance(models.Model):
     def __str__(self):
         return self.make
 
-# class Photo(models.Car):
-#     url = models.CharField(max_length=200)
-#     car = models.ForeignKey(Car, on_delete)
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
 
-#     def __str__(self):
-#         return f'Photo for car_id: {self.car_id} @{self.url}'
+    def __str__(self):
+        return f'Photo for car_id: {self.car_id} @{self.url}'
