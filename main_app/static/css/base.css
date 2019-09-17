@@ -1,0 +1,77 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+  }
+body{
+  background-color: #ececec;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+  
+  header{
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: rgba(78, 149, 65, 0.87);
+    height: 70px;
+  }
+
+  #header-links{
+    display: flex;
+    flex-direction: row;
+  }
+
+  #icon{
+    width: 75px;
+    height: 75px;
+    background: url(../imgs/car.svg);
+    background-repeat: no-repeat;
+    background-size: 75px 57px;
+    position: Absolute; 
+    top: 5px; 
+    left: 5px; 
+    transition: all .4s;
+  }
+
+  #header-links li {
+
+    font-size: 1.2em;
+    padding: 10px;
+    margin: 10px;
+    background-color: #b3258fad;
+    display: block;
+    border: 2px solid transparent;
+    transition: all .4s;
+    box-shadow: 2px 2px 2px rgb(70, 70, 70, .2);
+  }
+
+  #header-links a{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+  }
+  
+  #header-links li:hover {
+    color: rgb(255, 255, 255);
+    font-size: 1.25em;
+    padding: 10px;
+    margin: 10px;
+    background-color: transparent;
+    border: 2px solid #b3258fad;
+    text-decoration: none;
+    display: block;
+  }
+  .container{
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+
+.page-footer{
+    color: white;
+    background-color: rgb(31, 31, 31);
+    padding: 50px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+    bottom: 0px;
+    margin-bottom: 0px;
+  } 
