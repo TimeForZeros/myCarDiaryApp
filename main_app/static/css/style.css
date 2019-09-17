@@ -10,3 +10,79 @@
     background-color: rgba(78, 149, 65, 0.87);
     height: 70px;
   }
+
+  #header-links{
+    display: flex;
+    flex-direction: row;
+  }
+
+  #icon{
+    width: 75px;
+    height: 75px;
+    background: url(../imgs/car.svg);
+    background-repeat: no-repeat;
+    background-size: 75px 57px;
+    position: Absolute; 
+    top: 5px; 
+    left: 5px; 
+    transition: all .4s;
+  }
+
+  #header-links li {
+
+    font-size: 1.2em;
+    padding: 10px;
+    margin: 10px;
+    background-color: #b3258fad;
+    display: block;
+    border: 2px solid transparent;
+    transition: all .4s;
+    box-shadow: 2px 2px 2px rgb(70, 70, 70, .2);
+  }
+  #header-links a{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+  }
+  
+  #header-links li:hover {
+    color: rgb(255, 255, 255);
+    font-size: 1.25em;
+    padding: 10px;
+    margin: 10px;
+    background-color: transparent;
+    border: 2px solid #b3258fad;
+    text-decoration: none;
+    display: block;
+  }
+  .image-window {   
+    min-height: 500px;
+    background-image: url(../imgs/interior.jpg);
+    background-size: cover;
+    background-attachment: fixed
+  }
+  #image-window-black-area-background{
+    display: flex;
+    height: 300px;
+    width: 40%;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.349);
+    left: 50px;
+    top: 100px;
+    justify-content: space-evenly;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.219);
+  }
+  #image-window-text{
+    font-size: 2.4em;
+    color: white;
+    text-shadow: 4px 4px 4px rgb(70, 70, 70, 1);
+    text-align: center;
+    margin-top: 2%;
+    padding: 30px;
+    max-height: 290px;
+    max-width: 200px;
+  }
+
+  #image-window-text span{
+    padding-top: 30px;
+    color: orange;
+  }
