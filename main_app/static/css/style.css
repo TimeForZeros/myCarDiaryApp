@@ -6,6 +6,7 @@
 body{
   background-color: #ececec;
   font-family: 'Roboto', sans-serif;
+  font-weight: 400;
 }
   
   header{
@@ -98,7 +99,7 @@ body{
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.219);
   }
   #image-window-text{
-    font-weight: lighter;
+    font-weight: 100;
     font-size: 2.4em;
     color: white;
     text-shadow: 4px 4px 4px rgb(70, 70, 70, 1);
@@ -112,6 +113,7 @@ body{
   #image-window-text span{
     padding-top: 30px;
     color: orange;
+    font-weight: 400;
   }
 
   .image-window-black-backgrounds{
