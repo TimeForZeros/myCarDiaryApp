@@ -1,6 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
 <h1 style="font-size: 3em;">MY CARS</h1>
+{% for car in cars %}
+  <a href="{% url 'detail' car.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ car.year }} {{ car.make}} {{ car.model }}</span>
+
+        </div>
+    </div>
+  </a>
+{% endfor %}
 
 {% endblock %}

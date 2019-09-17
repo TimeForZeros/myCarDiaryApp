@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
 from .models import Car, Features, Maintenance
@@ -33,10 +34,10 @@ class CarDelete(DeleteView):
 def home(request):
     return render(request, 'home.html')
 
-def cars_index(request):
-  cars = Car.objects.all()
-  return render(request, 'cars/index.html', { 'cars': cars })
-
+# def cars_index(request):
+#   cars = Car.objects.all()
+#   return render(request, 'cars/index.html', { 'cars': cars })
+@login_required
 def cars_detail(request, car_id):
     car = Car.objects.get(id=car_id)
     maintenance_form = MaintenanceForm()
@@ -68,6 +69,21 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+@login_required
+def cars_index(request):
+  cars = Car.objects.filter(user=request.user)
+  return render(request, 'cars/index.html', { 'cars': cars })
+
+# def cars_detail(request, cat_id):
+#   car = Car.objects.get(id=car_id)
+#   # Get the toys the cat doesn't have
+#   return render(request, 'cats/detail.html', {
+#     # Pass the cat and feeding_form as context
+#     'car': car, 
+#     # 'maintenance_form': maintenance_form,
+
+  # })
 
 
 
