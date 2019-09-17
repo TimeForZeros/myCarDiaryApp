@@ -3,6 +3,10 @@
     margin: 0px;
     box-sizing: border-box;
   }
+body{
+  background-color: #ececec;
+  font-family: 'Roboto', sans-serif;
+}
   
   header{
     display: flex;
@@ -39,6 +43,7 @@
     transition: all .4s;
     box-shadow: 2px 2px 2px rgb(70, 70, 70, .2);
   }
+
   #header-links a{
     color: rgb(255, 255, 255);
     text-decoration: none;
@@ -54,24 +59,46 @@
     text-decoration: none;
     display: block;
   }
+
+  
+.container{
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+
+  .page-footer{
+    color: white;
+    background-color: rgb(31, 31, 31);
+    padding: 50px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+    bottom: 0px;
+    margin-bottom: 0px;
+  }
+  
   .image-window {   
     min-height: 500px;
     background-image: url(../imgs/interior.jpg);
     background-size: cover;
-    background-attachment: fixed
+    background-attachment: fixed;
+    background-position: 25% 35%;
   }
   #image-window-black-area-background{
     display: flex;
     height: 300px;
     width: 40%;
     position: relative;
-    background-color: rgba(0, 0, 0, 0.349);
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.701);
     left: 50px;
     top: 100px;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.219);
   }
   #image-window-text{
+    font-weight: lighter;
     font-size: 2.4em;
     color: white;
     text-shadow: 4px 4px 4px rgb(70, 70, 70, 1);
@@ -79,10 +106,40 @@
     margin-top: 2%;
     padding: 30px;
     max-height: 290px;
-    max-width: 200px;
+    max-width: 250px;
   }
 
   #image-window-text span{
     padding-top: 30px;
     color: orange;
+  }
+
+  .image-window-black-backgrounds{
+    display: flex;
+    flex-direction: row;
+  }
+
+  #image-window-black-area-background-two{
+    display: flex;
+    height: 80px;
+    width: 15%;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.701);
+    margin-left: 200px;
+    top: 200px;
+    justify-content: space-evenly;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.219);
+  }
+
+  #image-window-text-two a{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 1.2em;
+    padding: 10px;
+    margin: 10px;
+    background-color: green;
+    display: block;
+    border: 2px solid transparent;
+    transition: all .4s;
+    box-shadow: 2px 2px 2px rgb(70, 70, 70, .2);
   }
