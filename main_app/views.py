@@ -7,9 +7,11 @@ from django.contrib.auth.forms import UserCreationForm
 import uuid
 import boto3
 from .models import Car, Features, Maintenance
-# from .forms import MaintenanceForm
+from .forms import MaintenanceForm
+
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
 BUCKET = 'mycardiary'
+
 
 # Create your views here.
 
@@ -29,7 +31,7 @@ class CarDelete(DeleteView):
 
 
 def home(request):
-    return HttpResponse('Test')
+    return render(request, 'home.html')
 
 def cars_index(request):
   cars = Car.objects.all()
@@ -38,11 +40,11 @@ def cars_index(request):
 def cars_detail(request, car_id):
     car = Car.objects.get(id=car_id)
     maintenance_form = MaintenanceForm()
-    feature = Features.objects.all()
-    return render(request, 'cars/detail.hmtl', {
+    # feature = Features.objects.all()
+    return render(request, 'cars/detail.html', {
         'car': car,
         'maintenance_form': maintenance_form,
-        'feature': feature,
+        # 'feature': feature,
     })
 
 def add_maintenance(request, car_id):
