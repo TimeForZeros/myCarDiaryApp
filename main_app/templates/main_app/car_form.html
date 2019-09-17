@@ -1,5 +1,12 @@
+
 {% extends 'base.html' %}
+{% load static %}
+
+
 {% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+
 
 <h1 style="font-size: 3em;">ADD CAR FORM</h1>
 {% if object %}
@@ -21,5 +28,6 @@
 </form>
 
 
+<link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
 
 {% endblock %}
