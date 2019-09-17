@@ -4,9 +4,6 @@ from datetime import date
 from django.contrib.auth.models import User
 
 
-# from django.contrib.auth.models import User
-
-
 ######CLASS MODELS#########
 
 class Car(models.Model):
@@ -20,9 +17,7 @@ class Car(models.Model):
     odometer = models.IntegerField()
     state_reg = models.TextField(max_length=2)
     title = models.TextField(max_length=100)
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.make
