@@ -4,7 +4,7 @@
 <h1>Maintenance List</h1>
 
 {% for maintenance in maintenance_list %}
-  <a href="{% url 'maintenance_detail' toy.id %}">
+  <a href="{% url 'maintenance_detail' maintenace.id %}">
     <div class="card">
         <div class="card-content">
             <span class="card-title">{{ maintenance.type }}</span>
