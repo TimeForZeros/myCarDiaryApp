@@ -13,15 +13,18 @@ urlpatterns = [
     path('cars/<int:car_id>/add_photo/', views.add_photo, name='add_photo'),
     # path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup', views.signup, name='signup'),
-    # path('cars/create/', views.CarCreate.as_view(), name='cars_create'),
-    # path('cars/<int:pk>/update/', views.CarUpdate.as_view(), name='cars_update'),
-    # path('cars/<int:pk>/delete/', views.CarDelete.as_view(), name='cars_delete'),
-    # path('cars/<int:car_id>/add_maintenance/', views.add_maintenance, name='add_maintenance'),
-#     path('cars/<int:car_id>/assoc_feature/<int:feature_id>/', views.assoc_feature, name='assoc_feature'),
-#     path('cars/<int:car_id>/add_photo/', views.add_photo, name='add_photo'),
 #     path('features/', views.FeatureList.as_view(), name='features_index'),
 #     path('features/<int:pk>/', views.FeatureDetail.as_view(), name='features_detail'),
 #     path('features/create/', views.FeatureCreate.as_view(), name='features_create'),
 #     path('features/<int:pk>/update/', views FeatureUpdate.as_view(), name='features_update'),
 #     path('features/<int:pk>/delete/', views.FeatureDelete.as_view(), name='features_delete'),
+
+
+
+    # path('maintenance/', views.MaintenanceList.as_view(), name='maintenance_index'),
+    # path('maintenance/<int:pk>/', views.MaintenanceDetail.as_view(), name='maintenance_detail'),
+    # path('maintenance/create/', views.MaintenanceCreate.as_view(), name='maintenance_create'),
+    # path('maintenance/<int:pk>/update/', views MaintenanceUpdate.as_view(), name='maintenance_update'),
+    # path('maintenance/<int:pk>/delete/', views.MaintenanceDelete.as_view(), name='maintenance_delete'),
+
 ]
