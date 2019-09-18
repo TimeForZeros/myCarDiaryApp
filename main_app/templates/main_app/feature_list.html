@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1 style="font-size: 3em;">FEATURE LIST</h1>
+<h1>feature List</h1>
+
+{% for feature in feature_list %}
+  <a href="{% url 'features_detail' feature.id %}">
+    <div class="featured">
+        <div class="featured-content">
+            <span class="featured-title">{{ feature.name }}</span>
+        </div>
+    </div>
+  </a>
+{% endfor %}
 
 {% endblock %}

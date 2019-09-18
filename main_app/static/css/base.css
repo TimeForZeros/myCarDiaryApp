@@ -12,7 +12,7 @@ body{
   header{
     display: flex;
     flex-direction: row-reverse;
-    background-color: rgba(78, 149, 65, 0.87);
+    background-color: rgba(85, 136, 176, 0.87);
     height: 70px;
   }
 
@@ -34,33 +34,36 @@ body{
   }
 
   #header-links li {
-
     font-size: 1.2em;
     padding: 10px;
     margin: 10px;
-    background-color: #b3258fad;
+    background-color: #ececec;
+    border: 2px solid #ececec;
     display: block;
-    border: 2px solid transparent;
     transition: all .4s;
     box-shadow: 2px 2px 2px rgb(70, 70, 70, .2);
   }
 
   #header-links a{
-    color: rgb(255, 255, 255);
+    color: gray;
     text-decoration: none;
   }
   
   #header-links li:hover {
-    color: rgb(255, 255, 255);
-    font-size: 1.25em;
+    font-size: 1.2em;
     padding: 10px;
     margin: 10px;
     background-color: transparent;
-    border: 2px solid #b3258fad;
-    text-decoration: none;
+    border: 2px solid #ececec;
     display: block;
   }
-  .container{
+
+  #header-links li a:hover{
+    color: white;
+    background-color: transparent;
+  }
+
+.container{
     margin-left: 100px;
     margin-right: 100px;
   }
