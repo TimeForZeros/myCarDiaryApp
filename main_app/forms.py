@@ -1,14 +1,17 @@
 from django.forms import ModelForm
-from .models import Maintenance #Features
+from .models import Maintenance, Features, Car
 
-
+class CarForm(ModelForm):
+  class Meta:
+    model = Car
+    fields = ['make', 'model', 'year', 'color', 'transmission', 'seats', 'engine', 'odometer', 'state_reg', 'title', 'user']
 
 class MaintenanceForm(ModelForm):
   class Meta:
     model = Maintenance
-    fields = ['date', 'odo_reading', 'task', 'location', 'notes', 'price', 'to_do']
+    fields = ['date', 'odo_reading', 'task', 'location', 'notes', 'price']
 
-# class FeaturesForm(ModelForm):
-#   class Meta:
-#     model = Features
-#     fields = ['feature', 'wishlisht']
+class FeaturesForm(ModelForm):
+  class Meta:
+    model = Features
+    fields = ['feature', 'wishlist']
