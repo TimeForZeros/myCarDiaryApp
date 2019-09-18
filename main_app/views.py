@@ -5,9 +5,9 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-import uuid
 import boto3
-from .models import Car, Features, Maintenance
+import uuid
+from .models import Car, Features, Maintenance, Photo
 from .forms import MaintenanceForm
 
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
@@ -106,4 +106,4 @@ def add_photo(request, car_id):
             photo.save()
         except:
             print('An error occurred uploading file to S3')
-    return redirect('detail', car_id=car_id)
+    return redirect('detail', car_id=car_id) # look closely at this particular line of code
