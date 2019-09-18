@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Maintenance List</h1>
+
+{% for maintenance in maintenance_list %}
+  <a href="{% url 'maintenance_detail' toy.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ maintenance.type }}</span>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}

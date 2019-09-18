@@ -14,8 +14,6 @@ S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
 BUCKET = 'mycardiary'
 
 
-# Create your views here.
-
 class CarCreate(CreateView):
   model = Car
   fields = ['make', 'model', 'year', 'color', 'transmission',
@@ -86,10 +84,6 @@ def cars_index(request):
   # })
 
 
-
-
-##############  When upload photo functionality works ###############
-
 def add_photo(request, car_id):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
@@ -107,3 +101,45 @@ def add_photo(request, car_id):
         except:
             print('An error occurred uploading file to S3')
     return redirect('detail', car_id=car_id)
+
+
+
+
+class MaintenanceList(LoginRequiredMixin, ListView):
+  model = Maintenance
+
+class MaintenanceDetail(LoginRequiredMixin, DetailView):
+  model = Maintenance
+
+class MaintenanceCreate(LoginRequiredMixin, CreateView):
+  model = Maintenance
+  fields = '__all__'
+
+class MaintenanceUpdate(LoginRequiredMixin, UpdateView):
+  model = Maintenance
+  fields = ['name', 'color']
+
+class MaintenanceDelete(LoginRequiredMixin, DeleteView):
+  model = Maintenance
+  success_url = '/maintenance/'
+
+
+
+
+class FeaturesList(LoginRequiredMixin, ListView):
+  model = Features
+
+class FeaturesDetail(LoginRequiredMixin, DetailView):
+  model = Features
+
+class FeaturesCreate(LoginRequiredMixin, CreateView):
+  model = Features
+  fields = '__all__'
+
+class FeaturesUpdate(LoginRequiredMixin, UpdateView):
+  model = Features
+  fields = ['name', 'color']
+
+class FeaturesDelete(LoginRequiredMixin, DeleteView):
+  model = Features
+  success_url = '/features/'
