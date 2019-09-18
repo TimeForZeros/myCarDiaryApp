@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>feature List</h1>
+<h1>Features List</h1>
 
-{% for feature in feature_list %}
+{% for feature in features_list %}
   <a href="{% url 'features_detail' feature.id %}">
     <div class="featured">
         <div class="featured-content">
-            <span class="featured-title">{{ feature.name }}</span>
+            <span class="featured-title">{{ feature.feature }}</span>
         </div>
     </div>
   </a>

@@ -17,12 +17,11 @@
                 <div id="icon"></div>
 
                 <ul id="header-links">
-                    <li><a href="">About</a></li>
-                    <li><a href="">Add a Car</a></li>
-                    <li><a href="">My Cars</a></li>
-                    <li><a href="" id="logout">Log Out</a></li>
-                    <li><a href="" id="signup">Sign Up</a></li>
-                    <li><a href="" id="login">Log In</a></li>
+                    <li><a href="{% url 'cars_create'%}">Add a Car</a></li>
+                    <li><a href="{% url 'index' %}">My Cars</a></li>
+                    <li><a href="{% url 'logout' %}" id="logout">Log Out</a></li>
+                    <li><a href="{%url 'signup'%}" id="signup">Sign Up</a></li>
+                    <li><a href="{% url 'login' %}" id="login">Log In</a></li>
                 </ul>
         </nav>
     </header>

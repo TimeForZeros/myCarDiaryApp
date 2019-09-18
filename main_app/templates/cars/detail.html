@@ -58,6 +58,73 @@
 <a href="" style="font-size: 2em;">ADD FEATURE</a>
 <a href="" style="font-size: 2em;">VIEW FEATURES</a>
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/car-detail.css' %}">
 
+
+<hr>
+<div class="row">
+  <div class="col s6">
+    <h3>{{car.year}} {{car.make}} {{ car.model }}'s Features</h3>
+    {% if car.features.count %}
+      {% for feature in car.features.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              A <span style="feature: {{ features.feature }}">{{ features.feature }}</span> {{ features.wishlist }}
+            </span>
+          </div>
+          <div class="card-action">
+            <form action="{% url 'unassoc_toy' cat.id toy.id %}" method="post">
+                {% csrf_token %}
+              <button type="submit" class="btn">Remove</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>No Features :(</h5>
+    {% endif %}
+  </div>
+
+
+
+
+
+  {% if car.maintenance %}
+  <div class="card-panel teal-text center-align">{{car.year}} {{car.make}} {{car.model}} had this maintenance done</div>
+{% else %}
+  <div class="card-panel red-text center-align">{{car.year}} {{car.make}} {{car.model}} might need maintenance</div>
+{% endif %}
+<table class="striped">
+  <thead>
+    <tr><th>Date</th><th>Meal</th></tr>
+  </thead>
+  <tbody>
+    {% for feeding in cat.feeding_set.all %}
+      <tr>
+        <td>{{feeding.date}}</td>
+        <td>{{feeding.get_meal_display}}</td>
+      </tr>
+    {% endfor %}
+
+
+
+
+
+
+
+
+    <script>
+      var dateEl = document.getElementById('id_date');
+      M.Datepicker.init(dateEl, {
+        format: 'yyyy-mm-dd',
+        defaultDate: new Date(),
+        setDefaultDate: true,
+        autoClose: true
+      });
+    
+      var selectEl = document.getElementById('id_maintenance');
+      M.FormSelect.init(selectEl);
+    </script>
+
+< rel="stylesheet" type="text/css" href="{% static 'css/car-detail.css' %}">
 {% endblock %}

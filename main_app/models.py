@@ -7,15 +7,34 @@ from django.contrib.auth.models import User
 ######CLASS MODELS#########
 
 class Car(models.Model):
-    make = models.CharField(max_length=100)
-    model = models.CharField(max_length=100)
-    year = models.IntegerField()
-    color = models.CharField(max_length=50)
+    make = models.CharField(
+        max_length=100,
+        default='Ford')
+    model = models.CharField(
+        max_length=100,
+        default='Model T')
+    year = models.IntegerField(
+        default=1925
+    )
+    color = models.CharField(
+        max_length=50,
+        default='Black'
+    )
     transmission = models.CharField(max_length=100)
-    seats = models.IntegerField()
-    engine = models.CharField(max_length=100)
-    odometer = models.IntegerField()
-    state_reg = models.TextField(max_length=2)
+    seats = models.IntegerField(
+        default=0
+    )
+    engine = models.CharField(
+        max_length=100,
+        default='V8'
+        )
+    odometer = models.IntegerField(
+        default=42069,
+    )
+    state_reg = models.TextField(
+        max_length=2,
+        default='CA'
+        )
     title = models.TextField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -42,10 +61,12 @@ class Maintenance(models.Model):
     location = models.CharField(max_length=50)
     notes = models.CharField(max_length=250)
     price = models.IntegerField()
-    to_do = models.CharField(max_length=50)
+
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+   
 
     def __str__(self):
-        return self.task
+        return f'{self.task} on {self.date}'
 
 class Photo(models.Model):
     url = models.CharField(max_length=200)
