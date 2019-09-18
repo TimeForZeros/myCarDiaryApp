@@ -19,6 +19,10 @@ class CarCreate(CreateView):
   fields = ['make', 'model', 'year', 'color', 'transmission',
              'seats', 'engine', 'odometer', 'state_reg', 'title']
 
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+
 class CarUpdate(UpdateView):
   model = Car
   fields = ['color', 'odometer', 'state_reg', 'title']
