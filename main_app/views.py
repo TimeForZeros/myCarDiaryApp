@@ -134,6 +134,7 @@ class FeaturesDetail(LoginRequiredMixin, DetailView):
 class FeaturesCreate(LoginRequiredMixin, CreateView):
   model = Features
   fields = '__all__'
+  success_url = '/features/'
 
 class FeaturesUpdate(LoginRequiredMixin, UpdateView):
   model = Features

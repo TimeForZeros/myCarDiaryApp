@@ -10,7 +10,6 @@
 
     <div class="card">
         <div class="card-content">
-            <span class="card-title">{{ car.year }} {{ car.make}} {{ car.model }}</span>
         </div>
     </div>
       <div class='car-square'>
@@ -20,7 +19,6 @@
               <div class="car-img">
                 <img src=''>
               </div>
-
               <div class="car-title">
                 <p>{{ car.make}} {{ car.model }}</p>
               </div>
@@ -32,6 +30,7 @@
   {% endfor %}
 </div>
 
+<a href="{% url 'features_index'%}">Features List</a>
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/car-index.css' %}">
 
