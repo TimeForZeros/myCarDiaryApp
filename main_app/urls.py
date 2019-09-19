@@ -1,9 +1,8 @@
-from django.urls import path
+from django.urls import path, include 
 from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-#     path('about/', views.about, name='about'),
     path('cars/', views.cars_index, name='index'),
     path('cars/<int:car_id>/', views.cars_detail, name='detail'),
     path('cars/create/', views.CarCreate.as_view(), name='cars_create'),
@@ -12,18 +11,19 @@ urlpatterns = [
     path('cars/<int:car_id>/add_maintenance/', views.add_maintenance, name='add_maintenance'),
     path('cars/<int:car_id>/add_photo/', views.add_photo, name='add_photo'),
     # path('accounts/', include('django.contrib.auth.urls')),
+    path('features/', views.FeaturesList.as_view(), name='features_index'),
+    path('features/<int:pk>/', views.FeaturesDetail.as_view(), name='features_detail'),
+    path('features/create/', views.FeaturesCreate.as_view(), name='features_create'),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup', views.signup, name='signup'),
-#     path('features/', views.FeatureList.as_view(), name='features_index'),
-#     path('features/<int:pk>/', views.FeatureDetail.as_view(), name='features_detail'),
-#     path('features/create/', views.FeatureCreate.as_view(), name='features_create'),
-#     path('features/<int:pk>/update/', views FeatureUpdate.as_view(), name='features_update'),
-#     path('features/<int:pk>/delete/', views.FeatureDelete.as_view(), name='features_delete'),
+#     path('features/<int:pk>/update/', views FeaturesUpdate.as_view(), name='features_update'),
+#     path('features/<int:pk>/delete/', views.FeaturesDelete.as_view(), name='features_delete'),
 
 
 
-    # path('maintenance/', views.MaintenanceList.as_view(), name='maintenance_index'),
-    # path('maintenance/<int:pk>/', views.MaintenanceDetail.as_view(), name='maintenance_detail'),
-    # path('maintenance/create/', views.MaintenanceCreate.as_view(), name='maintenance_create'),
+    path('maintenance/', views.MaintenanceList.as_view(), name='maintenance_index'),
+    path('maintenance/<int:pk>/', views.MaintenanceDetail.as_view(), name='maintenance_detail'),
+    path('maintenance/create/', views.MaintenanceCreate.as_view(), name='maintenance_create'),
     # path('maintenance/<int:pk>/update/', views MaintenanceUpdate.as_view(), name='maintenance_update'),
     # path('maintenance/<int:pk>/delete/', views.MaintenanceDelete.as_view(), name='maintenance_delete'),
 

@@ -5,56 +5,13 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-import boto3
 import uuid
+import boto3
 from .models import Car, Features, Maintenance, Photo
 from .forms import MaintenanceForm
 
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
 BUCKET = 'mycardiary'
-
-
-# Create your views here.
-
-class CarCreate(CreateView):
-  model = Car
-  fields = ['make', 'model', 'year', 'color', 'transmission',
-             'seats', 'engine', 'odometer', 'state_reg', 'title']
-
-class CarUpdate(UpdateView):
-  model = Car
-  fields = ['color', 'odometer', 'state_reg', 'title']
-
-class CarDelete(DeleteView):
-  model = Car
-  success_url = '/cars/'
-
-
-
-def home(request):
-    return render(request, 'home.html')
-
-# def cars_index(request):
-#   cars = Car.objects.all()
-#   return render(request, 'cars/index.html', { 'cars': cars })
-@login_required
-def cars_detail(request, car_id):
-    car = Car.objects.get(id=car_id)
-    maintenance_form = MaintenanceForm()
-    # feature = Features.objects.all()
-    return render(request, 'cars/detail.html', {
-        'car': car,
-        'maintenance_form': maintenance_form,
-        # 'feature': feature,
-    })
-
-def add_maintenance(request, car_id):
-    form = MaintenanceForm(request.POST)
-    if form.is_valid():
-        new_maintenance = form.save(commit=False)
-        new_maintenance.car_id = car_id
-        new_maintenance.save()
-    return redirect ('detail', car_id=car_id)
 
 def signup(request):
   error_message = ''
@@ -70,10 +27,54 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
+class CarCreate(CreateView):
+  model = Car
+  fields = ['make', 'model', 'year', 'color', 'transmission',
+             'seats', 'engine', 'odometer', 'state_reg', 'title']
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+
+class CarUpdate(UpdateView):
+  model = Car
+  fields = ['color', 'odometer', 'state_reg', 'title']
+
+class CarDelete(DeleteView):
+  model = Car
+  success_url = '/cars/'
+
+def home(request):
+    return render(request, 'home.html')
+
+# def cars_index(request):
+#   cars = Car.objects.all()
 @login_required
 def cars_index(request):
   cars = Car.objects.filter(user=request.user)
   return render(request, 'cars/index.html', { 'cars': cars })
+#   return render(request, 'cars/index.html', { 'cars': cars })
+
+@login_required
+def cars_detail(request, car_id):
+    car = Car.objects.get(id=car_id)
+    maintenance_form = MaintenanceForm()
+    # feature = Features.objects.all()
+    return render(request, 'cars/detail.html', {
+        'car': car,
+        'maintenance_form': maintenance_form,
+        # 'feature': feature,
+    })
+@login_required
+def add_maintenance(request, car_id):
+    form = MaintenanceForm(request.POST)
+    if form.is_valid():
+        new_maintenance = form.save(commit=False)
+        new_maintenance.car_id = car_id
+        new_maintenance.save()
+    return redirect ('detail', car_id=car_id)
+
+
 
 # def cars_detail(request, cat_id):
 #   car = Car.objects.get(id=car_id)
@@ -85,11 +86,7 @@ def cars_index(request):
 
   # })
 
-
-
-
-##############  When upload photo functionality works ###############
-
+@login_required
 def add_photo(request, car_id):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
@@ -106,4 +103,46 @@ def add_photo(request, car_id):
             photo.save()
         except:
             print('An error occurred uploading file to S3')
-    return redirect('detail', car_id=car_id) # look closely at this particular line of code
+    return redirect('detail', car_id=car_id)
+
+
+
+
+class MaintenanceList(LoginRequiredMixin, ListView):
+  model = Maintenance
+
+class MaintenanceDetail(LoginRequiredMixin, DetailView):
+  model = Maintenance
+
+class MaintenanceCreate(LoginRequiredMixin, CreateView):
+  model = Maintenance
+  fields = '__all__'
+
+class MaintenanceUpdate(LoginRequiredMixin, UpdateView):
+  model = Maintenance
+  fields = ['name', 'color']
+
+class MaintenanceDelete(LoginRequiredMixin, DeleteView):
+  model = Maintenance
+  success_url = '/maintenance/'
+
+
+
+
+class FeaturesList(LoginRequiredMixin, ListView):
+  model = Features
+
+class FeaturesDetail(LoginRequiredMixin, DetailView):
+  model = Features
+
+class FeaturesCreate(LoginRequiredMixin, CreateView):
+  model = Features
+  fields = '__all__'
+
+class FeaturesUpdate(LoginRequiredMixin, UpdateView):
+  model = Features
+  fields = ['name', 'color']
+
+class FeaturesDelete(LoginRequiredMixin, DeleteView):
+  model = Features
+  success_url = '/features/'

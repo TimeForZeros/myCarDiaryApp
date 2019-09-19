@@ -14,6 +14,7 @@
       <li>Odometer: <span> {{ car.odometer }} </span></li>
       <li>State Registration: <span> {{ car.state_reg }} </span></li>
       <li>Title: <span> {{ car.title }} </span></li>
+      
     </ul>
     
     <div class="image-window">
@@ -31,14 +32,12 @@
     </div>
   </div>
   <!-- Insert photo markup below this comment -->
-  
-  
-  {% for photo in car.photo_set.all %}
+  {% for photo in user.car.photo_set.all %}
     <img class="responsive-img card-panel" src="{{photo.url}}">
   {% empty %}
     <div class="card-panel teal-text center-align">No Photos Uploaded</div>
   {% endfor %}
-  <form action="{% url 'add_photo' car.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+  <form action="{% url 'add_photo' user.car.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
     {% csrf_token %}
     <input type="file" name="photo-file">
     <br><br>
