@@ -9,7 +9,7 @@ class CarForm(ModelForm):
 class MaintenanceForm(ModelForm):
   class Meta:
     model = Maintenance
-    fields = ['date', 'odo_reading', 'task', 'location', 'notes', 'price']
+    fields = ['date', 'task', 'location', 'price']
 
 class FeaturesForm(ModelForm):
   class Meta:
