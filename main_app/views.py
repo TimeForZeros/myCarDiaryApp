@@ -7,12 +7,25 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
-from .models import Car, Features, Maintenance
+from .models import Car, Features, Maintenance, Photo
 from .forms import MaintenanceForm
 
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
 BUCKET = 'mycardiary'
 
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      login(request, user)
+      return redirect('index')
+    else:
+      error_message = 'Invalid sign up - try again'
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'registration/signup.html', context)
 
 class CarCreate(CreateView):
   model = Car
@@ -31,14 +44,17 @@ class CarDelete(DeleteView):
   model = Car
   success_url = '/cars/'
 
-
-
 def home(request):
     return render(request, 'home.html')
 
 # def cars_index(request):
 #   cars = Car.objects.all()
+@login_required
+def cars_index(request):
+  cars = Car.objects.filter(user=request.user)
+  return render(request, 'cars/index.html', { 'cars': cars })
 #   return render(request, 'cars/index.html', { 'cars': cars })
+
 @login_required
 def cars_detail(request, car_id):
     car = Car.objects.get(id=car_id)
@@ -49,7 +65,7 @@ def cars_detail(request, car_id):
         'maintenance_form': maintenance_form,
         'features': features,
     })
-
+@login_required
 def add_maintenance(request, car_id):
     form = MaintenanceForm(request.POST)
     if form.is_valid():
@@ -58,24 +74,7 @@ def add_maintenance(request, car_id):
         new_maintenance.save()
     return redirect ('detail.html', car_id=car_id)
 
-def signup(request):
-  error_message = ''
-  if request.method == 'POST':
-    form = UserCreationForm(request.POST)
-    if form.is_valid():
-      user = form.save()
-      login(request, user)
-      return redirect('index')
-    else:
-      error_message = 'Invalid sign up - try again'
-  form = UserCreationForm()
-  context = {'form': form, 'error_message': error_message}
-  return render(request, 'registration/signup.html', context)
 
-@login_required
-def cars_index(request):
-  cars = Car.objects.filter(user=request.user)
-  return render(request, 'cars/index.html', { 'cars': cars })
 
 # def cars_detail(request, cat_id):
 #   car = Car.objects.get(id=car_id)
@@ -87,7 +86,7 @@ def cars_index(request):
 
   # })
 
-
+@login_required
 def add_photo(request, car_id):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:

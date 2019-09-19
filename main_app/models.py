@@ -62,6 +62,7 @@ class Car(models.Model):
 class Maintenance(models.Model):
     date = models.DateField('maintenance date')
     odo_reading = models.IntegerField()
+    new_oil = models.IntegerField()
     task = models.CharField(max_length=100)
     location = models.CharField(max_length=50)
     notes = models.CharField(max_length=250)

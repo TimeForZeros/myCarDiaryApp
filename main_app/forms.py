@@ -1,10 +1,10 @@
 from django.forms import ModelForm
-from .models import Maintenance, Features, Car
+from .models import Maintenance, Features, Car, Photo
 
 class CarForm(ModelForm):
   class Meta:
     model = Car
-    fields = ['make', 'model', 'year', 'color', 'transmission', 'seats', 'engine', 'odometer', 'state_reg', 'title', 'user']
+    fields = ['make', 'model', 'year', 'color', 'transmission', 'seats', 'engine', 'odometer', 'state_reg', 'title']
 
 class MaintenanceForm(ModelForm):
   class Meta:

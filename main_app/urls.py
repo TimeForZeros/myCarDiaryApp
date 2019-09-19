@@ -1,9 +1,8 @@
-from django.urls import path
+from django.urls import path, include 
 from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-#     path('about/', views.about, name='about'),
     path('cars/', views.cars_index, name='index'),
     path('cars/<int:car_id>/', views.cars_detail, name='detail'),
     path('cars/create/', views.CarCreate.as_view(), name='cars_create'),
@@ -12,10 +11,11 @@ urlpatterns = [
     path('cars/<int:car_id>/add_maintenance/', views.add_maintenance, name='add_maintenance'),
     path('cars/<int:car_id>/add_photo/', views.add_photo, name='add_photo'),
     # path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup', views.signup, name='signup'),
     path('features/', views.FeaturesList.as_view(), name='features_index'),
     path('features/<int:pk>/', views.FeaturesDetail.as_view(), name='features_detail'),
     path('features/create/', views.FeaturesCreate.as_view(), name='features_create'),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/signup', views.signup, name='signup'),
 #     path('features/<int:pk>/update/', views FeaturesUpdate.as_view(), name='features_update'),
 #     path('features/<int:pk>/delete/', views.FeaturesDelete.as_view(), name='features_delete'),
 
