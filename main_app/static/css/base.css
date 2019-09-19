@@ -1,80 +1,85 @@
 *{
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
-  }
-body{
-  background-color: #ececec;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
 }
-  
-  header{
-    display: flex;
-    flex-direction: row-reverse;
-    background-color: rgba(85, 136, 176, 0.87);
-    height: 70px;
-  }
+body{
+background-color: #ececec;
+font-family: 'Roboto', sans-serif;
+font-weight: 400;
+}
+html, body {
+min-height: 100%;
+}
 
-  #header-links{
-    display: flex;
-    flex-direction: row;
-  }
+header{
+  display: flex;
+  flex-direction: row-reverse;
+  background-color: rgba(85, 136, 176, 0.87);
+  height: 70px;
+}
 
-  #icon{
-    width: 75px;
-    height: 75px;
-    background: url(../imgs/car.svg);
-    background-repeat: no-repeat;
-    background-size: 75px 57px;
-    position: Absolute; 
-    top: 5px; 
-    left: 5px; 
-    transition: all .4s;
-  }
+#header-links{
+  display: flex;
+  flex-direction: row;
+}
 
-  #header-links li {
-    font-size: 1.2em;
-    padding: 10px;
-    margin: 10px;
-    background-color: #ececec;
-    border: 2px solid #ececec;
-    display: block;
-    transition: all .4s;
-    box-shadow: 2px 2px 2px rgb(70, 70, 70, .2);
-  }
+#icon{
+  width: 75px;
+  height: 75px;
+  background: url(../imgs/car.svg);
+  background-repeat: no-repeat;
+  background-size: 75px 57px;
+  position: Absolute; 
+  top: 5px; 
+  left: 5px; 
+  transition: all .4s;
+}
 
-  #header-links a{
-    color: gray;
-    text-decoration: none;
-  }
-  
-  #header-links li:hover {
-    font-size: 1.2em;
-    padding: 10px;
-    margin: 10px;
-    background-color: transparent;
-    border: 2px solid #ececec;
-    display: block;
-  }
+#header-links li {
+  font-size: 1.2em;
+  padding: 10px;
+  margin: 10px;
+  background-color: #ececec;
+  border: 2px solid #ececec;
+  display: block;
+  transition: all .4s;
+  box-shadow: 2px 2px 2px rgb(70, 70, 70, .2);
+}
 
-  #header-links li a:hover{
-    color: white;
-    background-color: transparent;
-  }
+#header-links a{
+  color: gray;
+  text-decoration: none;
+}
+
+#header-links li:hover {
+  font-size: 1.2em;
+  padding: 10px;
+  margin: 10px;
+  background-color: transparent;
+  border: 2px solid #ececec;
+  display: block;
+}
+
+#header-links li a:hover{
+  color: white;
+  background-color: transparent;
+}
 
 .container{
-    margin-left: 100px;
-    margin-right: 100px;
-  }
+  margin-left: 100px;
+  margin-right: 100px;
+}
 
 .page-footer{
-    color: white;
-    background-color: rgb(31, 31, 31);
-    padding: 50px;
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.5em;
-    bottom: 0px;
-    margin-bottom: 0px;
-  } 
+  color: rgb(255, 255, 255);
+  background-color: rgb(31, 31, 31);
+  padding: 50px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5em;
+  z-index: 1;
+  bottom:0;
+  position: absolute;
+  width:100%;
+} 
