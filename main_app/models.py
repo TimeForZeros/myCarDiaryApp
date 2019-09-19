@@ -67,10 +67,8 @@ class Maintenance(models.Model):
     location = models.CharField(max_length=50)
     notes = models.CharField(max_length=250)
     price = models.IntegerField()
-
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
    
-
     def __str__(self):
         return f'{self.task} on {self.date}'
 

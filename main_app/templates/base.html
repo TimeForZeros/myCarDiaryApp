@@ -12,17 +12,17 @@
 </head>
 <body>
     <header class="">
+        {% if user.is_authenticated %}
         <nav>
 
                 <div id="icon"></div>
-
                 <ul id="header-links">
                     <li><a href="{% url 'cars_create'%}">Add a Car</a></li>
                     <li><a href="{% url 'index' %}">My Cars</a></li>
                     <li><a href="{% url 'logout' %}" id="logout">Log Out</a></li>
-                    <li><a href="{%url 'signup'%}" id="signup">Sign Up</a></li>
-                    <li><a href="{% url 'login' %}" id="login">Log In</a></li>
+                {% endif %}
                 </ul>
+            </div>
         </nav>
     </header>
 
