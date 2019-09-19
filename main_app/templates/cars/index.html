@@ -1,17 +1,31 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
-<h1>Car List</h1>
-{% for car in cars %}
-  <a href="{% url 'detail' car.id %}">
-    <div class="card">
-        <div class="card-content">
-            <span class="card-title">{{ car.year }} {{ car.make}} {{ car.model }}</span>
-          
-        </div>
-    </div>
-  </a>
-{% endfor %}
+<h1>Your Cars</h1>
 
+<div class = "car-squares-container">
+  {% for car in cars %}
+  <a href="{% url 'detail' car.id %}">
+      <div class='car-square'>
+
+          <div class='square-content'>
+
+              <div class="car-img">
+                <img src=''>
+              </div>
+
+              <div class="car-title">
+                <p>{{ car.make}} {{ car.model }}</p>
+              </div>
+
+          </div>
+
+      </div>
+  </a>
+  {% endfor %}
+</div>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
 
 {% endblock %}
