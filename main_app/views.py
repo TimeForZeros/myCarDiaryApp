@@ -59,11 +59,11 @@ def cars_index(request):
 def cars_detail(request, car_id):
     car = Car.objects.get(id=car_id)
     maintenance_form = MaintenanceForm()
-    # feature = Features.objects.all()
+    features = Features.objects.all()
     return render(request, 'cars/detail.html', {
         'car': car,
         'maintenance_form': maintenance_form,
-        # 'feature': feature,
+        'features': features,
     })
 @login_required
 def add_maintenance(request, car_id):
@@ -72,7 +72,7 @@ def add_maintenance(request, car_id):
         new_maintenance = form.save(commit=False)
         new_maintenance.car_id = car_id
         new_maintenance.save()
-    return redirect ('detail', car_id=car_id)
+    return redirect ('detail.html', car_id=car_id)
 
 
 
@@ -118,15 +118,26 @@ class MaintenanceCreate(LoginRequiredMixin, CreateView):
   model = Maintenance
   fields = '__all__'
 
+   
 class MaintenanceUpdate(LoginRequiredMixin, UpdateView):
   model = Maintenance
-  fields = ['name', 'color']
+  fields = '__all__'
 
 class MaintenanceDelete(LoginRequiredMixin, DeleteView):
   model = Maintenance
   success_url = '/maintenance/'
 
 
+
+@login_required
+def assoc_feature(request, car_id, feature_id):
+  Car.objects.get(id=car_id).features.add(feature_id)
+  return redirect('detail', car_id=car_id)
+
+@login_required
+def unassoc_feature(request, car_id, feature_id):
+  Car.objects.get(id=car_id).features.remove(feature_id)
+  return redirect('detail', car_id=car_id)
 
 
 class FeaturesList(LoginRequiredMixin, ListView):
@@ -141,8 +152,9 @@ class FeaturesCreate(LoginRequiredMixin, CreateView):
 
 class FeaturesUpdate(LoginRequiredMixin, UpdateView):
   model = Features
-  fields = ['name', 'color']
+  fields = ['wishlist']
 
 class FeaturesDelete(LoginRequiredMixin, DeleteView):
   model = Features
   success_url = '/features/'
+

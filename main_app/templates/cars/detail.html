@@ -1,33 +1,38 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-
-
+<link rel="stylesheet" type="text/css" href="{% static 'css/car-details.css' %}">
 
 <div class="car-container">
   <div class="container-content">
-    <span class="car-title">{{car.make}} {{ car.model }} {{car.year}}</span>
-    <ul>
-      <li>Color: <span> {{ car.color }} </span></li>
-      <li>Transmission: <span> {{ car.transmission }} </span></li>
-      <li>Seats: <span> {{ car.seats }} </span></li>
-      <li>Engine: <span> {{ car.engine }} </span></li>
-      <li>Odometer: <span> {{ car.odometer }} </span></li>
-      <li>State Registration: <span> {{ car.state_reg }} </span></li>
-      <li>Title: <span> {{ car.title }} </span></li>
-      
-    </ul>
+
+    <div class="list">
+      <span class="car-title">{{car.make}} {{ car.model }} {{car.year}}</span>
+      <ul>
+        <li>Color: <span> {{ car.color }} </span></li>
+        <li>Transmission: <span> {{ car.transmission }} </span></li>
+        <li>Seats: <span> {{ car.seats }} </span></li>
+        <li>Engine: <span> {{ car.engine }} </span></li>
+        <li>Odometer: <span> {{ car.odometer }} </span></li>
+        <li>State Registration: <span> {{ car.state_reg }} </span></li>
+        <li>Title: <span> {{ car.title }} </span></li>
+      </ul>
+    </div>
     
-    <div class="image-window">
-      
+    <div class="image-container">
+      <div class="image-window">
+        
+      </div>
     </div>
 
   </div>
 
   <div class="call-to-action-container">
-    <div class="edit">
+    <div class="call-to-action-container-buttons" id="edit">
       <a href="{% url 'cars_update' car.id %}">Edit</a>
     </div>
-    <div class="delete">
+    <div class="call-to-action-container-buttons" id="delete">
       <a href="{% url 'cars_delete' car.id %}">Delete</a>
     </div>
   </div>
@@ -51,5 +56,97 @@
 <a href="" style="font-size: 2em;">VIEW MAINT</a>
 <a href="" style="font-size: 2em;">ADD FEATURE</a>
 <a href="" style="font-size: 2em;">VIEW FEATURES</a>
+
+
+
+<hr>
+<div class="row">
+  <div class="col s6">
+    <h3>{{car.year}} {{car.make}} {{ car.model }}'s Features</h3>
+    {% if car.features.count %}
+      {% for feature in car.features.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              <span style="feature: {{ features.feature }}">{{ feature.feature }}</span> {{ features.wishlist }}
+            </span>
+          </div>
+          <div class="card-action">
+            <form action="{% url 'unassoc_feature' car.id feature.id %}" method="post">
+                {% csrf_token %}
+              <button type="submit" class="btn">Remove</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>No Features :(</h5>
+    {% endif %}
+  </div>
+
+  <h3>Available Features</h3>
+  {% if features.count %}
+    {% for feature in features.all %}
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">
+            <span >{{ feature.feature }}</span>
+          </span>
+        </div>
+        <div class="card-action">
+          <form action="{% url 'assoc_feature' car.id feature.id %}" method="post">
+              {% csrf_token %}
+            <button type="submit" class="btn">Add</button>
+          </form>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <h5>{{car.year}} {{car.make}} {{ car.model }} Already Has All Features Available</h5>
+  {% endif %}
+</div>
+</div>
+
+
+
+
+
+  {% if car.maintenance %}
+  <div class="card-panel teal-text center-align">{{car.year}} {{car.make}} {{car.model}} had this maintenance done</div>
+{% else %}
+  <div class="card-panel red-text center-align">{{car.year}} {{car.make}} {{car.model}} might need maintenance</div>
+{% endif %}
+<table class="striped">
+  <thead>
+    <tr><th>Date</th><th>Maintenance</th></tr>
+  </thead>
+  <tbody>
+    {% for maintenance in car.maintenance.all %}
+      <tr>
+        <td>{{maintenance.date}}</td>
+        <td>{{maintenance.type}}</td>
+      </tr>
+    {% endfor %}
+
+
+
+
+
+
+
+
+    <script>
+      var dateEl = document.getElementById('id_date');
+      M.Datepicker.init(dateEl, {
+        format: 'yyyy-mm-dd',
+        defaultDate: new Date(),
+        setDefaultDate: true,
+        autoClose: true
+      });
+    
+      var selectEl = document.getElementById('id_maintenance');
+      M.FormSelect.init(selectEl);
+    </script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/car-detail.css' %}">
 
 {% endblock %}

@@ -19,6 +19,8 @@ urlpatterns = [
 #     path('features/<int:pk>/update/', views FeaturesUpdate.as_view(), name='features_update'),
 #     path('features/<int:pk>/delete/', views.FeaturesDelete.as_view(), name='features_delete'),
 
+  path('cars/<int:car_id>/assoc_feature/<int:feature_id>/', views.assoc_feature, name='assoc_feature'),
+  path('cars/<int:car_id>/unassoc_feature/<int:feature_id>/', views.unassoc_feature, name='unassoc_feature'),
 
 
     path('maintenance/', views.MaintenanceList.as_view(), name='maintenance_index'),

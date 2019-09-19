@@ -2,20 +2,14 @@
 {% block content %}
 
 <h1>Car List</h1>
-
-<!-- {% for car in car_list %}
-  <a href="{% url 'cars_detail' car.id %}">
-    <div class="card">
-        <div class="card-content">
-            <span class="card-title">{{ car.model }}</span>
- -->
-
-<h1 style="font-size: 3em;">MY CARS</h1>
 {% for car in cars %}
   <a href="{% url 'detail' car.id %}">
     <div class="card">
         <div class="card-content">
             <span class="card-title">{{ car.year }} {{ car.make}} {{ car.model }}</span>
+          
+          
+          
               {% if car.odo_reading > car.odometer}
                 <p>You Need an Oil Change</p>
                 {% else %}
@@ -25,6 +19,7 @@
     </div>
   </a>
 {% endfor %}
+
 {% endfor %}
 
 {% endblock %}
