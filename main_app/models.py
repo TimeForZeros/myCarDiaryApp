@@ -45,7 +45,10 @@ class Car(models.Model):
         max_length=2,
         default='CA'
         )
-    title = models.TextField(max_length=100)
+    title = models.TextField(
+        max_length=100,
+        default='Clean'
+        )
     features = models.ManyToManyField(Features)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
