@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-
-
+<link rel="stylesheet" type="text/css" href="{% static 'css/car-details.css' %}">
 
 <div class="car-container">
   <div class="container-content">
@@ -73,7 +74,7 @@
             </span>
           </div>
           <div class="card-action">
-            <form action="{% url 'unassoc_toy' cat.id toy.id %}" method="post">
+            <form action="{% url 'unassoc_feature' car.id feature.id %}" method="post">
                 {% csrf_token %}
               <button type="submit" class="btn">Remove</button>
             </form>
@@ -84,6 +85,29 @@
       <h5>No Features :(</h5>
     {% endif %}
   </div>
+
+  <h3>Available Features</h3>
+  {% if features.count %}
+    {% for feature in features.all %}
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">
+            <span >{{ feature.feature }}</span>
+          </span>
+        </div>
+        <div class="card-action">
+          <form action="{% url 'assoc_feature' car.id feature.id %}" method="post">
+              {% csrf_token %}
+            <button type="submit" class="btn">Add</button>
+          </form>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <h5>{{car.year}} {{car.make}} {{ car.model }} Already Has All Features Available</h5>
+  {% endif %}
+</div>
+</div>
 
 
 
@@ -125,6 +149,6 @@
       var selectEl = document.getElementById('id_maintenance');
       M.FormSelect.init(selectEl);
     </script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/car-detail.css' %}">
 
-< rel="stylesheet" type="text/css" href="{% static 'css/car-detail.css' %}">
 {% endblock %}
