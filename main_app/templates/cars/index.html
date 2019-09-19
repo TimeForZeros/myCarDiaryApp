@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
 <h1>Car List</h1>
@@ -10,7 +11,7 @@
             <span class="card-title">{{ car.model }}</span>
  -->
 
-<h1 style="font-size: 3em;">MY CARS</h1>
+<!-- <h1 style="font-size: 3em;">MY CARS</h1>
 {% for car in cars %}
   <a href="{% url 'detail' car.id %}">
     <div class="card">
@@ -21,8 +22,32 @@
         </div>
     </div>
   </a>
-{% endfor %}
+{% endfor %} -->
+
+<div class = "car-squares-container">
+  {% for car in cars %}
+  <a href="{% url 'detail' car.id %}">
+      <div class='car-square'>
+
+          <div class='square-content'>
+
+              <div class="car-img">
+                <img src=''>
+              </div>
+
+              <div class="car-title">
+                <p>{{ car.make}} {{ car.model }}</p>
+              </div>
+
+          </div>
+
+      </div>
+  </a>
+  {% endfor %}
+</div>
 
 <!-- had to add another endfor for some reason -->
-{% endfor %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
+
 {% endblock %}
