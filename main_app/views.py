@@ -75,17 +75,6 @@ def add_maintenance(request, car_id):
     return redirect ('detail.html', car_id=car_id)
 
 
-
-# def cars_detail(request, cat_id):
-#   car = Car.objects.get(id=car_id)
-#   # Get the toys the cat doesn't have
-#   return render(request, 'cats/detail.html', {
-#     # Pass the cat and feeding_form as context
-#     'car': car, 
-#     # 'maintenance_form': maintenance_form,
-
-  # })
-
 @login_required
 def add_photo(request, car_id):
     photo_file = request.FILES.get('photo-file', None)
