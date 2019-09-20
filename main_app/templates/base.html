@@ -12,15 +12,17 @@
 </head>
 <body>
     <header class="">
-        {% if user.is_authenticated %}
         <nav>
 
                 <div id="icon"></div>
                 <ul id="header-links">
+                {% if user.is_authenticated %}
                     <li><a href="{% url 'cars_create'%}">Add a Car</a></li>
                     <li><a href="{% url 'index' %}">My Cars</a></li>
                     <li><a href="{% url 'logout' %}" id="logout">Log Out</a></li>
-                {% endif %}
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Log In</a> </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
@@ -32,8 +34,8 @@
         {% endblock %}
     </main>
 
-  	<footer class="page-footer">
+  	<!-- <footer class="page-footer">
        <div class="footer-text">All Rights Reserved, &copy; 2019 Car Diary &nbsp;</div>
-    </footer>
+    </footer> -->
 </body>
 </html>
