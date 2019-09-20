@@ -15,10 +15,11 @@
       <div class='car-square'>
 
           <div class='square-content'>
-
+              {% for photo in car.photo_set.all %}
               <div class="car-img">
-                <img src=''>
+                <img src="{{photo.url}}">
               </div>
+              {% endfor %}
               <div class="car-title">
                 <p>{{ car.make}} {{ car.model }}</p>
               </div>
