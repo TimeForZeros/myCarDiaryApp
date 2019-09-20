@@ -20,10 +20,25 @@
       </ul>
     </div>
     
+    {% for photo in car.photo_set.all %}
     <div class="image-container">
-      <div class="image-window">
-        
+        <img class="image-window" src="{{photo.url}}">
+        {% empty %}
+        <img class="image-window" src="/main_app/static/imgs/no-picture-yet.jpg">
+        <div class="photo-call-to-action">
+          <form action="{% url 'add_photo' car.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+            {% csrf_token %}
+              <div class="choose">
+                <input type="file" name="photo-file" id="choose-file">
+              </div>
+              <div class="upload">
+                <input type="submit" value="Upload Photo" id="upload-photo">
+              </div>
+        </form>
       </div>
+          </div>
+      </div>
+      {% endfor %}
     </div>
 
   </div>
@@ -37,96 +52,112 @@
     </div>
   </div>
 
-  {% for photo in car.photo_set.all %}
-    <img class="responsive-img card-panel" src="{{photo.url}}">
-  {% empty %}
-    <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-  {% endfor %}
-  <form action="{% url 'add_photo' car.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
-    {% csrf_token %}
-    <input type="file" name="photo-file">
-    <br><br>
-    <input type="submit" class="btn" value="Upload Photo">
-  </form>
-</div>  
-  
+</div>
 
-<h1 style="font-size: 3em;">CAR DETAILS</h1>
-<a href="" style="font-size: 2em;">ADD MAINT</a>
-<a href="" style="font-size: 2em;">VIEW MAINT</a>
-<a href="" style="font-size: 2em;">ADD FEATURE</a>
-<a href="" style="font-size: 2em;">VIEW FEATURES</a>
+<div class="features-container-page">
 
+      <div class="call-to-action-features">
 
+        <div class="call-to-action-add-feature">
 
-<hr>
-<div class="row">
-  <div class="col s6">
-    <h3>{{car.year}} {{car.make}} {{ car.model }}'s Features</h3>
-    {% if car.features.count %}
-      {% for feature in car.features.all %}
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">
-              <span style="feature: {{ features.feature }}">{{ feature.feature }}</span> {{ features.wishlist }}
-            </span>
-          </div>
-          <div class="card-action">
-            <form action="{% url 'unassoc_feature' car.id feature.id %}" method="post">
-                {% csrf_token %}
-              <button type="submit" class="btn">Remove</button>
-            </form>
-          </div>
+          <a href="{% url 'features_create' %}" id="add-a-feature">Add Feature</a>
+
         </div>
-      {% endfor %}
-    {% else %}
-      <h5>No Features :(</h5>
-    {% endif %}
-  </div>
 
-  <h3>Available Features</h3>
-  {% if features.count %}
-    {% for feature in features.all %}
-      <div class="card">
-        <div class="card-content">
-          <span class="card-title">
-            <span >{{ feature.feature }}</span>
-          </span>
+        <div class="call-to-action-view-all-features">
+
+          <a href="" id="view-features">View All Features</a>
+
         </div>
-        <div class="card-action">
-          <form action="{% url 'assoc_feature' car.id feature.id %}" method="post">
-              {% csrf_token %}
-            <button type="submit" class="btn">Add</button>
-          </form>
-        </div>
+
       </div>
-    {% endfor %}
-  {% else %}
-    <h5>{{car.year}} {{car.make}} {{ car.model }} Already Has All Features Available</h5>
-  {% endif %}
+
+      <hr>
+
+          <h3>{{car.year}} {{car.make}} {{ car.model }}'s Features</h3>
+          <div class="features-container">
+          {% if car.features.count %}
+            {% for feature in car.features.all %}
+                <div class="feature">
+                  <div class="features-content">
+                    <span class="feature-title">{{ feature.feature }}</span>
+                  </div>
+                  <div class="card-action1">
+                      <form action="{% url 'unassoc_feature' car.id feature.id %}" method="post">
+                          {% csrf_token %}
+                        <button type="submit" class="btn">Remove</button>
+                      </form>
+                    </div>
+              </div>
+
+
+            {% endfor %}
+
+            
+          {% else %}
+          <div class="alert">
+            <h5 class="alert-message">No Features :(</h5>
+          </div>
+          {% endif %}
+
+        </div>
+
+
+        <h3>Available Features</h3>
+
+
+        <div class="features-container">
+        {% if features.count %}
+          {% for feature in features.all %}
+                <div class="feature">
+                  <div class="features-content">
+                    <span class="feature-title">{{ feature.feature }}</span>
+                  </div>
+                  <div class="card-action1">
+                      <form action="{% url 'assoc_feature' car.id feature.id %}" method="post">
+                          {% csrf_token %}
+                        <button type="submit" class="btn">Add</button>
+                      </form>
+                    </div>
+                </div>
+              </div>
+
+
+
+          {% endfor %}
+
+
+
+        {% else %}
+        <div class="alert">
+          <h5 class="alert-message">{{car.year}} {{car.make}} {{ car.model }} Already Has All Features Available</h5>
+        </div>
+        {% endif %}
+
+
 </div>
-</div>
 
 
-
-
-
+<div class="maint-container" style="visibility: hidden">
   {% if car.maintenance %}
-  <div class="card-panel teal-text center-align">{{car.year}} {{car.make}} {{car.model}} had this maintenance done</div>
-{% else %}
-  <div class="card-panel red-text center-align">{{car.year}} {{car.make}} {{car.model}} might need maintenance</div>
-{% endif %}
-<table class="striped">
-  <thead>
-    <tr><th>Date</th><th>Maintenance</th></tr>
-  </thead>
-  <tbody>
+
+    <div class="card-panel teal-text center-align">{{car.year}} {{car.make}} {{car.model}} had this maintenance done</div>
+    {% else %}
+    <div class="card-panel red-text center-align">{{car.year}} {{car.make}} {{car.model}} might need maintenance</div>
+    {% endif %}
+    <table class="striped">
+    <thead>
+      <tr><th>Date</th><th>Maintenance</th></tr>
+    </thead>
+    <tbody>
     {% for maintenance in car.maintenance.all %}
-      <tr>
-        <td>{{maintenance.date}}</td>
-        <td>{{maintenance.type}}</td>
-      </tr>
+    <tr>
+      <td>{{maintenance.date}}</td>
+      <td>{{maintenance.type}}</td>
+    </tr>
+
     {% endfor %}
+  </div>
 
 
 
